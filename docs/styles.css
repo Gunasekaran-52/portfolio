@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Creepster&display=swap");
+
 :root {
   --ink: #eafff5;
   --muted: #a6beb3;
@@ -31,6 +33,30 @@ body {
     radial-gradient(circle at 88% 16%, rgba(94, 216, 255, 0.09), transparent 28rem),
     var(--paper);
   line-height: 1.6;
+}
+
+body[data-theme="garden"] {
+  color-scheme: dark;
+}
+
+body[data-theme="hell"] {
+  --ink: #ffe9e2;
+  --muted: #caa9a1;
+  --paper: #100303;
+  --surface: #1b0808;
+  --line: #5d1515;
+  --teal: #ff2f2f;
+  --mint: #330909;
+  --coral: #ff6a2f;
+  --gold: #ff2018;
+  --plum: #7b1212;
+  --night: #050101;
+  --shadow: 0 24px 70px rgba(0, 0, 0, 0.58);
+  color-scheme: dark;
+  background:
+    radial-gradient(circle at 16% 0%, rgba(220, 18, 18, 0.22), transparent 31rem),
+    radial-gradient(circle at 86% 14%, rgba(255, 86, 29, 0.12), transparent 26rem),
+    linear-gradient(180deg, #140303 0%, #050101 100%);
 }
 
 img,
@@ -116,6 +142,14 @@ a {
   letter-spacing: 0;
 }
 
+.header-actions {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .brand-mark {
   display: grid;
   place-items: center;
@@ -128,6 +162,28 @@ a {
   font-size: 0.75rem;
   font-weight: 800;
   animation: markPulse 3.8s ease-in-out infinite;
+}
+
+body[data-theme="hell"] .site-header {
+  background: linear-gradient(90deg, rgba(5, 1, 1, 0.9), rgba(45, 5, 5, 0.7));
+  border-color: rgba(255, 32, 24, 0.24);
+  box-shadow: 0 20px 54px rgba(0, 0, 0, 0.42);
+}
+
+body[data-theme="hell"] .site-header::before {
+  background:
+    linear-gradient(110deg, transparent 0%, rgba(255, 32, 24, 0.19) 40%, transparent 58%),
+    linear-gradient(90deg, rgba(255, 47, 47, 0.16), transparent 36%, rgba(255, 106, 47, 0.12));
+}
+
+body[data-theme="hell"] .site-header::after {
+  background: linear-gradient(90deg, transparent, rgba(255, 32, 24, 0.74), rgba(255, 106, 47, 0.38), transparent);
+}
+
+body[data-theme="hell"] .brand-mark {
+  color: #fff1ee;
+  background: #8d0707;
+  box-shadow: 0 0 24px rgba(255, 32, 24, 0.38);
 }
 
 .site-nav {
@@ -178,6 +234,76 @@ a {
 .site-header.is-scrolled .site-nav a:hover,
 .site-header.is-scrolled .site-nav a.is-active {
   background: rgba(25, 200, 135, 0.18);
+}
+
+body[data-theme="hell"] .site-nav a:hover,
+body[data-theme="hell"] .site-nav a.is-active,
+body[data-theme="hell"] .site-header.is-scrolled .site-nav a:hover,
+body[data-theme="hell"] .site-header.is-scrolled .site-nav a.is-active {
+  background: rgba(255, 32, 24, 0.18);
+}
+
+body[data-theme="hell"] .site-nav a::after {
+  background: #ff2018;
+}
+
+.theme-toggle {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 7px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 8px;
+  color: currentColor;
+  background: rgba(255, 255, 255, 0.08);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.theme-toggle-track {
+  position: relative;
+  width: 36px;
+  height: 20px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--gold), var(--teal));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.28);
+}
+
+.theme-toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--night);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.24);
+  transition: transform 220ms ease, background 220ms ease;
+}
+
+body[data-theme="hell"] .theme-toggle {
+  border-color: rgba(255, 32, 24, 0.46);
+  background: rgba(120, 5, 5, 0.34);
+}
+
+body[data-theme="hell"] .theme-toggle-track {
+  background: linear-gradient(90deg, #170202, #ff2018);
+}
+
+body[data-theme="hell"] .theme-toggle-thumb {
+  background: #fff0ea;
+  transform: translateX(16px);
 }
 
 .nav-toggle {
@@ -262,6 +388,52 @@ a {
     linear-gradient(0deg, rgba(2, 11, 9, 0.74) 0%, rgba(2, 11, 9, 0.06) 45%);
 }
 
+body[data-theme="hell"] .hero-overlay {
+  background:
+    linear-gradient(90deg, rgba(5, 1, 1, 0.98) 0%, rgba(34, 3, 3, 0.88) 48%, rgba(45, 5, 5, 0.34) 100%),
+    radial-gradient(circle at 75% 42%, rgba(255, 32, 24, 0.18), transparent 24rem),
+    linear-gradient(0deg, rgba(5, 1, 1, 0.82) 0%, rgba(5, 1, 1, 0.1) 45%);
+}
+
+.hero-horror-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(5, 1, 1, 0.4), rgba(5, 1, 1, 0.02)),
+    url("assets/hell-skull-mist.webp") right center / min(64vw, 940px) auto no-repeat;
+  mix-blend-mode: screen;
+  transition: opacity 260ms ease;
+}
+
+body[data-theme="hell"] .hero-horror-layer {
+  opacity: 0.62;
+}
+
+.hero-handprint {
+  position: absolute;
+  right: clamp(80px, 17vw, 300px);
+  top: clamp(265px, 46vh, 470px);
+  width: clamp(150px, 18vw, 270px);
+  aspect-ratio: 1;
+  background: url("assets/bloody-handprint.png") center / contain no-repeat;
+  opacity: 0;
+  transform: translate3d(120px, -80px, 0) rotate(-18deg) scale(1.45);
+  filter:
+    saturate(1.18)
+    contrast(1.16)
+    drop-shadow(0 0 16px rgba(255, 32, 24, 0.34))
+    drop-shadow(0 18px 26px rgba(0, 0, 0, 0.44));
+  will-change: opacity, transform;
+}
+
+body.is-hell-intro .hero-handprint {
+  animation: handprintStrike 3.1s cubic-bezier(0.2, 0.86, 0.2, 1) both;
+}
+
 .butterfly-field {
   position: absolute;
   inset: 0;
@@ -270,6 +442,11 @@ a {
   pointer-events: none;
   mask-image: linear-gradient(90deg, transparent 0%, transparent 42%, rgba(0, 0, 0, 0.55) 52%, #000 68%);
   -webkit-mask-image: linear-gradient(90deg, transparent 0%, transparent 42%, rgba(0, 0, 0, 0.55) 52%, #000 68%);
+}
+
+body[data-theme="hell"] .butterfly-field {
+  opacity: 0;
+  filter: saturate(0) brightness(0.4);
 }
 
 .butterfly {
@@ -397,6 +574,7 @@ a {
 }
 
 .hero h1 {
+  position: relative;
   margin: 0;
   width: max-content;
   max-width: 100%;
@@ -410,6 +588,49 @@ a {
     0 0 36px rgba(94, 216, 255, 0.18),
     0 8px 28px rgba(0, 0, 0, 0.62);
   animation: titleRise 720ms ease-out both;
+}
+
+body[data-theme="hell"] .hero h1 {
+  padding-bottom: 0.34em;
+  font-family: Creepster, Georgia, serif;
+  font-weight: 400;
+  color: #910909;
+  -webkit-text-stroke: 1px rgba(255, 204, 194, 0.7);
+  text-shadow:
+    0 2px 0 #2a0101,
+    0 5px 0 #100000,
+    0 0 18px rgba(255, 32, 24, 0.48),
+    0 14px 32px rgba(0, 0, 0, 0.82);
+}
+
+body[data-theme="hell"] .hero h1::before,
+body[data-theme="hell"] .hero h1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+
+body[data-theme="hell"] .hero h1::before {
+  display: none;
+}
+
+body[data-theme="hell"] .hero h1::after {
+  bottom: -0.16em;
+  height: 0.62em;
+  background:
+    linear-gradient(180deg, rgba(180, 5, 5, 0.92), rgba(80, 1, 1, 0)) 8% 0 / 0.045em 0.58em no-repeat,
+    radial-gradient(circle, #b80505 0 52%, transparent 54%) 7.6% 0.48em / 0.11em 0.11em no-repeat,
+    linear-gradient(180deg, rgba(210, 12, 12, 0.92), rgba(90, 2, 2, 0)) 26% 0 / 0.04em 0.42em no-repeat,
+    radial-gradient(circle, #d40b0b 0 52%, transparent 54%) 25.7% 0.33em / 0.1em 0.1em no-repeat,
+    linear-gradient(180deg, rgba(150, 3, 3, 0.95), rgba(70, 1, 1, 0)) 46% 0 / 0.05em 0.66em no-repeat,
+    radial-gradient(circle, #970202 0 52%, transparent 54%) 45.6% 0.56em / 0.12em 0.12em no-repeat,
+    linear-gradient(180deg, rgba(205, 8, 8, 0.9), rgba(70, 1, 1, 0)) 68% 0 / 0.036em 0.36em no-repeat,
+    radial-gradient(circle, #bd0606 0 52%, transparent 54%) 67.7% 0.28em / 0.09em 0.09em no-repeat,
+    linear-gradient(180deg, rgba(180, 5, 5, 0.94), rgba(70, 1, 1, 0)) 89% 0 / 0.045em 0.5em no-repeat,
+    radial-gradient(circle, #b30505 0 52%, transparent 54%) 88.6% 0.41em / 0.1em 0.1em no-repeat;
+  opacity: 0.95;
 }
 
 .hero-copy {
@@ -461,6 +682,18 @@ a {
   background: rgba(255, 255, 255, 0.1);
 }
 
+body[data-theme="hell"] .btn.primary {
+  color: #fff1ee;
+  background: linear-gradient(180deg, #d20b0b, #6b0202);
+  border-color: #f33126;
+  box-shadow: 0 0 24px rgba(255, 32, 24, 0.26);
+}
+
+body[data-theme="hell"] .btn.secondary {
+  background: rgba(90, 2, 2, 0.34);
+  border-color: rgba(255, 204, 194, 0.28);
+}
+
 .hero-stats {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -474,10 +707,19 @@ a {
   backdrop-filter: blur(10px);
 }
 
+body[data-theme="hell"] .hero-stats {
+  border-color: rgba(255, 204, 194, 0.16);
+  background: rgba(28, 2, 2, 0.68);
+}
+
 .hero-stats div {
   min-height: 96px;
   padding: 18px;
   background: rgba(7, 20, 23, 0.25);
+}
+
+body[data-theme="hell"] .hero-stats div {
+  background: rgba(8, 1, 1, 0.28);
 }
 
 .hero-stats strong,
@@ -553,6 +795,11 @@ p {
   background:
     linear-gradient(180deg, rgba(14, 33, 27, 0.94), rgba(6, 19, 15, 0.96));
   border-block: 1px solid var(--line);
+}
+
+body[data-theme="hell"] .skill-band {
+  background:
+    linear-gradient(180deg, rgba(25, 5, 5, 0.96), rgba(9, 1, 1, 0.98));
 }
 
 .skill-grid,
@@ -669,6 +916,17 @@ p {
   background: var(--coral);
 }
 
+body[data-theme="hell"] .tableau,
+body[data-theme="hell"] .excel,
+body[data-theme="hell"] .powerbi,
+body[data-theme="hell"] .sql,
+body[data-theme="hell"] .python,
+body[data-theme="hell"] .business,
+body[data-theme="hell"] .detail-icon {
+  color: #fff1ee;
+  background: linear-gradient(180deg, #9d0505, #3b0101);
+}
+
 .timeline {
   width: min(920px, 100%);
   margin: 0 auto;
@@ -713,6 +971,12 @@ p {
 .projects {
   background:
     linear-gradient(180deg, rgba(18, 59, 47, 0.7), rgba(6, 19, 15, 0));
+}
+
+body[data-theme="hell"] .projects {
+  background:
+    radial-gradient(circle at 80% 0%, rgba(255, 32, 24, 0.1), transparent 25rem),
+    linear-gradient(180deg, rgba(42, 6, 6, 0.72), rgba(9, 1, 1, 0));
 }
 
 .project-card {
@@ -773,6 +1037,13 @@ p {
     linear-gradient(135deg, rgba(7, 39, 29, 0.96), rgba(2, 11, 9, 0.98));
   border: 1px solid rgba(25, 200, 135, 0.22);
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
+}
+
+body[data-theme="hell"] .contact-panel {
+  background:
+    linear-gradient(135deg, rgba(45, 5, 5, 0.98), rgba(5, 1, 1, 0.98));
+  border-color: rgba(255, 32, 24, 0.28);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
 }
 
 .contact-panel p {
@@ -856,6 +1127,50 @@ p {
   100% {
     transform: translateX(365%);
     opacity: 0;
+  }
+}
+
+@keyframes handprintStrike {
+  0% {
+    opacity: 0;
+    transform: translate3d(130px, -95px, 0) rotate(-24deg) scale(1.52);
+  }
+
+  22% {
+    opacity: 0.98;
+    transform: translate3d(0, 0, 0) rotate(-8deg) scale(1.02);
+  }
+
+  34% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(-8deg) scale(1);
+  }
+
+  52% {
+    opacity: 0.88;
+    transform: translate3d(0, 0, 0) rotate(-8deg) scale(1);
+  }
+
+  72% {
+    opacity: 0.54;
+    transform: translate3d(-8px, 12px, 0) rotate(-10deg) scale(0.98);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(-24px, 28px, 0) rotate(-12deg) scale(0.95);
+  }
+}
+
+@keyframes handprintReduced {
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  35%,
+  70% {
+    opacity: 0.8;
   }
 }
 
@@ -1034,8 +1349,8 @@ p {
   }
 
   .site-nav {
-    position: absolute;
-    top: calc(100% + 8px);
+    position: fixed;
+    top: 76px;
     left: 18px;
     right: 18px;
     display: none;
@@ -1047,6 +1362,10 @@ p {
     color: var(--ink);
     background: #071611;
     box-shadow: var(--shadow);
+  }
+
+  .header-actions {
+    gap: 8px;
   }
 
   .site-nav a::after {
@@ -1104,6 +1423,12 @@ p {
     background-size: 52px 52px;
   }
 
+  .hero-handprint {
+    right: -28px;
+    top: 150px;
+    width: 130px;
+  }
+
   .hero-stats,
   .intro-grid,
   .section-heading,
@@ -1131,10 +1456,20 @@ p {
   }
 
   .brand span:last-child {
-    max-width: 170px;
+    max-width: 138px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  .theme-toggle {
+    width: 48px;
+    justify-content: center;
+    padding-inline: 6px;
+  }
+
+  .theme-toggle-text {
+    display: none;
   }
 
   .hero {
@@ -1144,6 +1479,10 @@ p {
   .hero h1 {
     font-size: clamp(1.85rem, 8.2vw, 2.28rem);
     line-height: 0.98;
+  }
+
+  body[data-theme="hell"] .hero h1 {
+    font-size: clamp(2.1rem, 10.2vw, 2.68rem);
   }
 
   .hero-actions,
@@ -1178,5 +1517,9 @@ p {
     animation-duration: 1ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 1ms !important;
+  }
+
+  body.is-hell-intro .hero-handprint {
+    animation: handprintReduced 1.2s ease both !important;
   }
 }
