@@ -268,33 +268,27 @@ a {
   z-index: 2;
   overflow: hidden;
   pointer-events: none;
+  mask-image: linear-gradient(90deg, transparent 0%, transparent 42%, rgba(0, 0, 0, 0.55) 52%, #000 68%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, transparent 42%, rgba(0, 0, 0, 0.55) 52%, #000 68%);
 }
 
 .butterfly {
   --scale: 1;
   --wing-speed: 520ms;
-  --first-x: 10vw;
-  --first-y: 0vh;
-  --mid-x: 18vw;
-  --mid-y: -8vh;
-  --late-x: 26vw;
-  --late-y: -15vh;
-  --end-x: 36vw;
-  --end-y: -20vh;
   position: absolute;
-  left: 58%;
-  top: 50%;
-  width: 142px;
-  height: 142px;
+  left: 54%;
+  top: 44%;
+  width: 118px;
+  height: 118px;
   opacity: 0;
   perspective: 520px;
   transform-style: preserve-3d;
   filter:
-    drop-shadow(0 0 16px rgba(185, 255, 90, 0.42))
+    drop-shadow(0 0 12px rgba(185, 255, 90, 0.34))
     drop-shadow(0 12px 18px rgba(0, 0, 0, 0.22));
   transform: scale(var(--scale));
-  animation: butterflyFlight 13s ease-in-out infinite;
-  animation-delay: -2.6s;
+  animation: butterflyFlightA 19s cubic-bezier(0.42, 0, 0.18, 1) infinite;
+  animation-delay: -5.8s;
 }
 
 .butterfly::before {
@@ -355,20 +349,13 @@ a {
 }
 
 .butterfly-two {
-  --scale: 0.72;
+  --scale: 0.64;
   --wing-speed: 610ms;
-  --first-x: -12vw;
-  --first-y: 10vh;
-  --mid-x: -26vw;
-  --mid-y: 8vh;
-  --late-x: -42vw;
-  --late-y: -2vh;
-  --end-x: -58vw;
-  --end-y: -10vh;
-  left: 86%;
-  top: 30%;
-  animation-delay: -8.2s;
-  animation-duration: 15s;
+  left: 82%;
+  top: 24%;
+  animation-name: butterflyFlightB;
+  animation-delay: -13.4s;
+  animation-duration: 23s;
 }
 
 .butterfly-two i,
@@ -378,20 +365,13 @@ a {
 }
 
 .butterfly-three {
-  --scale: 0.52;
+  --scale: 0.46;
   --wing-speed: 680ms;
-  --first-x: 8vw;
-  --first-y: -4vh;
-  --mid-x: 18vw;
-  --mid-y: -12vh;
-  --late-x: 34vw;
-  --late-y: -16vh;
-  --end-x: 48vw;
-  --end-y: -3vh;
-  left: 48%;
-  top: 72%;
-  animation-delay: -12.2s;
-  animation-duration: 16s;
+  left: 68%;
+  top: 68%;
+  animation-name: butterflyFlightC;
+  animation-delay: -19.6s;
+  animation-duration: 29s;
 }
 
 .butterfly-three i,
@@ -879,36 +859,129 @@ p {
   }
 }
 
-@keyframes butterflyFlight {
+@keyframes butterflyFlightA {
   0% {
     opacity: 0;
-    transform: translate3d(0, 0, 0) rotate(-16deg) scale(var(--scale));
+    transform: translate3d(-6vw, 4vh, 0) rotate(-18deg) scale(var(--scale));
   }
 
-  14% {
-    opacity: 0.62;
+  11% {
+    opacity: 0.46;
   }
 
-  24% {
-    transform: translate3d(var(--first-x), var(--first-y), 0) rotate(11deg) scale(var(--scale));
+  22% {
+    transform: translate3d(5vw, -5vh, 0) rotate(9deg) scale(var(--scale));
   }
 
-  46% {
-    transform: translate3d(var(--mid-x), var(--mid-y), 0) rotate(-7deg) scale(var(--scale));
+  38% {
+    transform: translate3d(18vw, 3vh, 0) rotate(-6deg) scale(var(--scale));
   }
 
-  64% {
-    transform: translate3d(var(--late-x), var(--late-y), 0) rotate(16deg) scale(var(--scale));
+  59% {
+    opacity: 0.52;
+    transform: translate3d(27vw, -11vh, 0) rotate(14deg) scale(var(--scale));
   }
 
-  82% {
-    opacity: 0.58;
-    transform: translate3d(var(--late-x), var(--late-y), 0) rotate(-10deg) scale(var(--scale));
+  76% {
+    transform: translate3d(38vw, -4vh, 0) rotate(-12deg) scale(var(--scale));
   }
 
   100% {
     opacity: 0;
-    transform: translate3d(var(--end-x), var(--end-y), 0) rotate(8deg) scale(var(--scale));
+    transform: translate3d(52vw, -18vh, 0) rotate(10deg) scale(var(--scale));
+  }
+}
+
+@keyframes butterflyFlightB {
+  0% {
+    opacity: 0;
+    transform: translate3d(10vw, -2vh, 0) rotate(16deg) scale(var(--scale));
+  }
+
+  15% {
+    opacity: 0.38;
+  }
+
+  29% {
+    transform: translate3d(-4vw, 7vh, 0) rotate(-11deg) scale(var(--scale));
+  }
+
+  48% {
+    opacity: 0.48;
+    transform: translate3d(-17vw, -3vh, 0) rotate(7deg) scale(var(--scale));
+  }
+
+  67% {
+    transform: translate3d(-29vw, 9vh, 0) rotate(-18deg) scale(var(--scale));
+  }
+
+  86% {
+    opacity: 0.32;
+    transform: translate3d(-38vw, -8vh, 0) rotate(12deg) scale(var(--scale));
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(-48vw, 2vh, 0) rotate(-7deg) scale(var(--scale));
+  }
+}
+
+@keyframes butterflyFlightC {
+  0% {
+    opacity: 0;
+    transform: translate3d(-4vw, 10vh, 0) rotate(-9deg) scale(var(--scale));
+  }
+
+  18% {
+    opacity: 0.3;
+    transform: translate3d(3vw, 2vh, 0) rotate(15deg) scale(var(--scale));
+  }
+
+  36% {
+    transform: translate3d(14vw, 12vh, 0) rotate(-13deg) scale(var(--scale));
+  }
+
+  55% {
+    opacity: 0.4;
+    transform: translate3d(22vw, 0vh, 0) rotate(8deg) scale(var(--scale));
+  }
+
+  74% {
+    transform: translate3d(30vw, 14vh, 0) rotate(-16deg) scale(var(--scale));
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(40vw, 5vh, 0) rotate(11deg) scale(var(--scale));
+  }
+}
+
+@keyframes butterflyMobileFlight {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 4vh, 0) rotate(-12deg) scale(var(--scale));
+  }
+
+  18% {
+    opacity: 0.44;
+  }
+
+  35% {
+    transform: translate3d(-4vw, -2vh, 0) rotate(10deg) scale(var(--scale));
+  }
+
+  58% {
+    opacity: 0.36;
+    transform: translate3d(3vw, 3vh, 0) rotate(-8deg) scale(var(--scale));
+  }
+
+  82% {
+    transform: translate3d(-5vw, -4vh, 0) rotate(14deg) scale(var(--scale));
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(4vw, -8vh, 0) rotate(-6deg) scale(var(--scale));
   }
 }
 
@@ -1000,22 +1073,23 @@ p {
     padding-top: 116px;
   }
 
+  .butterfly-field {
+    mask-image: linear-gradient(90deg, transparent 0%, transparent 62%, #000 76%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, transparent 62%, #000 76%);
+  }
+
   .butterfly {
-    width: 82px;
-    height: 82px;
+    width: 64px;
+    height: 64px;
   }
 
   .butterfly-one {
-    --first-x: -2vw;
-    --first-y: 4vh;
-    --mid-x: -4vw;
-    --mid-y: 2vh;
-    --late-x: -8vw;
-    --late-y: -1vh;
-    --end-x: -12vw;
-    --end-y: -4vh;
-    left: 76%;
-    top: 15%;
+    --scale: 0.72;
+    left: 82%;
+    top: 18%;
+    animation-name: butterflyMobileFlight;
+    animation-duration: 18s;
+    animation-delay: -6s;
   }
 
   .butterfly-two {
