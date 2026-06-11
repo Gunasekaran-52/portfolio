@@ -272,8 +272,13 @@ a {
 
 .butterfly {
   --scale: 1;
+  --wing-speed: 520ms;
+  --first-x: 10vw;
+  --first-y: 0vh;
   --mid-x: 18vw;
   --mid-y: -8vh;
+  --late-x: 26vw;
+  --late-y: -15vh;
   --end-x: 36vw;
   --end-y: -20vh;
   position: absolute;
@@ -282,6 +287,8 @@ a {
   width: 142px;
   height: 142px;
   opacity: 0;
+  perspective: 520px;
+  transform-style: preserve-3d;
   filter:
     drop-shadow(0 0 16px rgba(185, 255, 90, 0.42))
     drop-shadow(0 12px 18px rgba(0, 0, 0, 0.22));
@@ -300,19 +307,62 @@ a {
   transform: translateY(18px);
 }
 
+.butterfly::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 31%;
+  z-index: 2;
+  width: 7%;
+  height: 38%;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 50% 15%, rgba(185, 255, 90, 0.95), rgba(25, 200, 135, 0.42) 32%, transparent 34%),
+    linear-gradient(180deg, #182112 0%, #123b18 45%, #08100a 100%);
+  box-shadow: 0 0 10px rgba(185, 255, 90, 0.32);
+  transform: translateX(-50%);
+}
+
 .butterfly i {
   position: absolute;
   inset: 0;
   display: block;
+  transform-style: preserve-3d;
+  animation: butterflyBody 1.7s ease-in-out infinite;
+}
+
+.butterfly i::before,
+.butterfly i::after {
+  content: "";
+  position: absolute;
+  inset: 0;
   background: url("assets/green-butterfly-real.png") center / contain no-repeat;
-  transform-origin: 50% 58%;
-  animation: butterflyFlutter 1.4s ease-in-out infinite;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.butterfly i::before {
+  clip-path: inset(0 50% 0 0);
+  transform-origin: 50% 52%;
+  animation: butterflyWingLeft var(--wing-speed) ease-in-out infinite;
+}
+
+.butterfly i::after {
+  clip-path: inset(0 0 0 50%);
+  transform-origin: 50% 52%;
+  animation: butterflyWingRight var(--wing-speed) ease-in-out infinite;
 }
 
 .butterfly-two {
   --scale: 0.72;
+  --wing-speed: 610ms;
+  --first-x: -12vw;
+  --first-y: 10vh;
   --mid-x: -26vw;
   --mid-y: 8vh;
+  --late-x: -42vw;
+  --late-y: -2vh;
   --end-x: -58vw;
   --end-y: -10vh;
   left: 86%;
@@ -321,15 +371,21 @@ a {
   animation-duration: 15s;
 }
 
-.butterfly-two i {
+.butterfly-two i,
+.butterfly-two i::before,
+.butterfly-two i::after {
   animation-delay: -0.45s;
-  animation-duration: 1.7s;
 }
 
 .butterfly-three {
   --scale: 0.52;
+  --wing-speed: 680ms;
+  --first-x: 8vw;
+  --first-y: -4vh;
   --mid-x: 18vw;
   --mid-y: -12vh;
+  --late-x: 34vw;
+  --late-y: -16vh;
   --end-x: 48vw;
   --end-y: -3vh;
   left: 48%;
@@ -338,9 +394,10 @@ a {
   animation-duration: 16s;
 }
 
-.butterfly-three i {
+.butterfly-three i,
+.butterfly-three i::before,
+.butterfly-three i::after {
   animation-delay: -0.7s;
-  animation-duration: 1.9s;
 }
 
 .hero-content {
@@ -825,35 +882,66 @@ p {
 @keyframes butterflyFlight {
   0% {
     opacity: 0;
-    transform: translate3d(0, 0, 0) rotate(-12deg) scale(var(--scale));
+    transform: translate3d(0, 0, 0) rotate(-16deg) scale(var(--scale));
   }
 
   14% {
     opacity: 0.62;
   }
 
+  24% {
+    transform: translate3d(var(--first-x), var(--first-y), 0) rotate(11deg) scale(var(--scale));
+  }
+
   46% {
-    transform: translate3d(var(--mid-x), var(--mid-y), 0) rotate(14deg) scale(var(--scale));
+    transform: translate3d(var(--mid-x), var(--mid-y), 0) rotate(-7deg) scale(var(--scale));
+  }
+
+  64% {
+    transform: translate3d(var(--late-x), var(--late-y), 0) rotate(16deg) scale(var(--scale));
   }
 
   82% {
     opacity: 0.58;
+    transform: translate3d(var(--late-x), var(--late-y), 0) rotate(-10deg) scale(var(--scale));
   }
 
   100% {
     opacity: 0;
-    transform: translate3d(var(--end-x), var(--end-y), 0) rotate(-8deg) scale(var(--scale));
+    transform: translate3d(var(--end-x), var(--end-y), 0) rotate(8deg) scale(var(--scale));
   }
 }
 
-@keyframes butterflyFlutter {
+@keyframes butterflyBody {
   0%,
   100% {
-    transform: rotateZ(-2deg) scaleX(1) scaleY(1);
+    transform: translateY(0) rotateZ(-1deg);
   }
 
   50% {
-    transform: rotateZ(2deg) scaleX(0.94) scaleY(1.04);
+    transform: translateY(-4px) rotateZ(1deg);
+  }
+}
+
+@keyframes butterflyWingLeft {
+  0%,
+  100% {
+    transform: rotateY(8deg) rotateZ(-1deg);
+  }
+
+  48% {
+    transform: rotateY(72deg) rotateZ(4deg);
+  }
+}
+
+@keyframes butterflyWingRight {
+  0%,
+  100% {
+    transform: rotateY(-8deg) rotateZ(1deg);
+  }
+
+  48% {
+    transform: rotateY(-72deg) rotateZ(-4deg);
   }
 }
 
@@ -918,8 +1006,12 @@ p {
   }
 
   .butterfly-one {
+    --first-x: -2vw;
+    --first-y: 4vh;
     --mid-x: -4vw;
     --mid-y: 2vh;
+    --late-x: -8vw;
+    --late-y: -1vh;
     --end-x: -12vw;
     --end-y: -4vh;
     left: 76%;
