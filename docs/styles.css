@@ -454,7 +454,6 @@ body[data-theme="hell"] .hero-horror-layer {
     drop-shadow(0 0 8px rgba(255, 245, 238, 0.6))
     drop-shadow(0 0 18px rgba(255, 32, 24, 0.4));
   background:
-    radial-gradient(circle at 50% 50%, transparent 0 10%, rgba(255, 245, 238, 0.68) 11%, transparent 13% 100%),
     linear-gradient(94deg, transparent 0 48.7%, rgba(255, 245, 238, 0.98) 49.3% 50.7%, transparent 51.3% 100%) 50% 50% / 96% 3px no-repeat,
     linear-gradient(34deg, transparent 0 48.8%, rgba(255, 245, 238, 0.92) 49.4% 50.6%, transparent 51.2% 100%) 52% 39% / 94% 3px no-repeat,
     linear-gradient(132deg, transparent 0 48.8%, rgba(255, 245, 238, 0.82) 49.4% 50.6%, transparent 51.2% 100%) 45% 52% / 82% 3px no-repeat,
@@ -503,11 +502,23 @@ body[data-theme="hell"] .hero-horror-layer {
 .hero-hand-strike {
   opacity: 0;
   transform: translate3d(130px, -130px, 0) rotate(-28deg) scale(1.75);
+  filter:
+    saturate(1.24)
+    contrast(1.2)
+    brightness(1.05)
+    drop-shadow(0 0 18px rgba(255, 32, 24, 0.42))
+    drop-shadow(0 18px 30px rgba(0, 0, 0, 0.5));
 }
 
 .hero-handprint {
   opacity: 0;
   transform: translate(-50%, -50%) rotate(-8deg) scale(0.96);
+  filter:
+    saturate(1.28)
+    contrast(1.35)
+    brightness(0.62)
+    drop-shadow(0 0 12px rgba(255, 32, 24, 0.28));
+  mix-blend-mode: screen;
 }
 
 .blood-leaks {
@@ -589,7 +600,7 @@ body.is-hell-intro .hero-hand-strike {
 }
 
 body.has-hell-mark[data-theme="hell"] .hero-handprint {
-  opacity: 0.94;
+  opacity: 0.74;
 }
 
 body.is-hell-intro .hero-handprint {
@@ -1427,13 +1438,13 @@ body[data-theme="hell"] .contact-panel {
   }
 
   9% {
-    opacity: 0.98;
+    opacity: 0.78;
     transform: translate(-50%, -50%) rotate(-8deg) scale(1.04);
   }
 
   15%,
   100% {
-    opacity: 0.94;
+    opacity: 0.74;
     transform: translate(-50%, -50%) rotate(-8deg) scale(0.96);
   }
 }
