@@ -369,6 +369,11 @@ body[data-theme="hell"] .theme-toggle-thumb {
   animation: scanBeam 5.6s ease-in-out infinite;
 }
 
+body[data-theme="hell"] .hero::after {
+  background: linear-gradient(90deg, transparent, rgba(255, 32, 24, 0.86), rgba(255, 106, 47, 0.62), transparent);
+  box-shadow: 0 0 28px rgba(255, 32, 24, 0.38);
+}
+
 .hero-media,
 .hero-media img,
 .hero-overlay {
@@ -396,6 +401,9 @@ body[data-theme="hell"] .hero-overlay {
 }
 
 .hero-horror-layer {
+  --impact-x: clamp(52%, 71vw, 76%);
+  --impact-y: clamp(180px, 47vh, 470px);
+  --impact-size: clamp(150px, 18vw, 270px);
   position: absolute;
   inset: 0;
   z-index: 2;
@@ -413,15 +421,55 @@ body[data-theme="hell"] .hero-horror-layer {
   opacity: 0.62;
 }
 
-.hero-handprint {
+.screen-impact-flash,
+.screen-cracks,
+.hero-hand-strike,
+.hero-handprint,
+.blood-leaks {
   position: absolute;
-  right: clamp(80px, 17vw, 300px);
-  top: clamp(265px, 46vh, 470px);
-  width: clamp(150px, 18vw, 270px);
+  pointer-events: none;
+}
+
+.screen-impact-flash {
+  left: var(--impact-x);
+  top: var(--impact-y);
+  width: calc(var(--impact-size) * 1.55);
+  height: calc(var(--impact-size) * 1.55);
+  border-radius: 999px;
+  opacity: 0;
+  background:
+    radial-gradient(circle, rgba(255, 245, 238, 0.78) 0 6%, rgba(255, 32, 24, 0.34) 18%, transparent 62%);
+  mix-blend-mode: screen;
+  transform: translate(-50%, -50%) scale(0.22);
+}
+
+.screen-cracks {
+  left: var(--impact-x);
+  top: var(--impact-y);
+  width: calc(var(--impact-size) * 2.28);
+  height: calc(var(--impact-size) * 1.9);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.72);
+  filter:
+    drop-shadow(0 0 7px rgba(255, 245, 238, 0.48))
+    drop-shadow(0 0 18px rgba(255, 32, 24, 0.34));
+  background:
+    radial-gradient(circle at 50% 50%, transparent 0 12%, rgba(255, 245, 238, 0.52) 13%, transparent 15% 100%),
+    linear-gradient(94deg, transparent 0 48.7%, rgba(255, 245, 238, 0.95) 49.4% 50.6%, transparent 51.3% 100%) 50% 50% / 82% 3px no-repeat,
+    linear-gradient(34deg, transparent 0 48.8%, rgba(255, 245, 238, 0.82) 49.5% 50.5%, transparent 51.2% 100%) 52% 39% / 86% 3px no-repeat,
+    linear-gradient(132deg, transparent 0 48.8%, rgba(255, 245, 238, 0.72) 49.5% 50.5%, transparent 51.2% 100%) 45% 52% / 70% 3px no-repeat,
+    linear-gradient(72deg, transparent 0 48.8%, rgba(255, 245, 238, 0.78) 49.5% 50.5%, transparent 51.2% 100%) 56% 58% / 62% 3px no-repeat,
+    linear-gradient(154deg, transparent 0 48.8%, rgba(255, 245, 238, 0.64) 49.5% 50.5%, transparent 51.2% 100%) 66% 44% / 48% 3px no-repeat,
+    linear-gradient(18deg, transparent 0 48.8%, rgba(255, 245, 238, 0.58) 49.5% 50.5%, transparent 51.2% 100%) 34% 63% / 42% 3px no-repeat;
+}
+
+.hero-hand-strike,
+.hero-handprint {
+  left: var(--impact-x);
+  top: var(--impact-y);
+  width: var(--impact-size);
   aspect-ratio: 1;
   background: url("assets/bloody-handprint.png") center / contain no-repeat;
-  opacity: 0;
-  transform: translate3d(120px, -80px, 0) rotate(-18deg) scale(1.45);
   filter:
     saturate(1.18)
     contrast(1.16)
@@ -430,8 +478,129 @@ body[data-theme="hell"] .hero-horror-layer {
   will-change: opacity, transform;
 }
 
+.hero-hand-strike {
+  opacity: 0;
+  transform: translate3d(130px, -130px, 0) rotate(-28deg) scale(1.75);
+}
+
+.hero-handprint {
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(-8deg) scale(0.96);
+}
+
+.blood-leaks {
+  left: var(--impact-x);
+  top: calc(var(--impact-y) + var(--impact-size) * 0.08);
+  width: calc(var(--impact-size) * 0.85);
+  height: calc(var(--impact-size) * 0.96);
+  opacity: 0;
+  transform: translate(-48%, -3%);
+  filter:
+    drop-shadow(0 0 8px rgba(255, 32, 24, 0.26))
+    drop-shadow(0 10px 12px rgba(0, 0, 0, 0.32));
+}
+
+.blood-leaks i {
+  position: absolute;
+  top: 0;
+  width: 5px;
+  height: 0;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #b90707 0%, #6d0101 72%, rgba(65, 1, 1, 0) 100%);
+  transform-origin: top;
+}
+
+.blood-leaks i::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -7px;
+  width: 12px;
+  height: 15px;
+  border-radius: 50% 50% 58% 58%;
+  background: #850202;
+  transform: translateX(-50%);
+}
+
+.blood-leaks i:nth-child(1) {
+  left: 18%;
+  max-height: 44%;
+}
+
+.blood-leaks i:nth-child(2) {
+  left: 39%;
+  max-height: 76%;
+  width: 6px;
+}
+
+.blood-leaks i:nth-child(3) {
+  left: 62%;
+  max-height: 58%;
+}
+
+.blood-leaks i:nth-child(4) {
+  left: 78%;
+  max-height: 34%;
+  width: 4px;
+}
+
+body.is-hell-intro .screen-impact-flash {
+  animation: impactFlash 1.15s ease-out both;
+}
+
+body.is-hell-intro .screen-cracks,
+body.has-hell-mark[data-theme="hell"] .screen-cracks {
+  opacity: 0.86;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+body.is-hell-intro .hero-media img {
+  animation: screenJolt 520ms cubic-bezier(0.2, 0.88, 0.18, 1) both;
+}
+
+body.is-hell-intro .screen-cracks {
+  animation: crackSpread 3.9s ease-out both;
+}
+
+body.is-hell-intro .hero-hand-strike {
+  animation: handStrike 1.35s cubic-bezier(0.13, 0.88, 0.18, 1) both;
+}
+
+body.has-hell-mark[data-theme="hell"] .hero-handprint {
+  opacity: 0.94;
+}
+
 body.is-hell-intro .hero-handprint {
-  animation: handprintStrike 3.1s cubic-bezier(0.2, 0.86, 0.2, 1) both;
+  animation: printSettle 3.9s ease-out both;
+}
+
+body.has-hell-mark[data-theme="hell"] .blood-leaks {
+  opacity: 0.96;
+}
+
+body.has-hell-mark[data-theme="hell"] .blood-leaks i {
+  height: var(--leak-height, 44%);
+  animation: bloodLeakPulse 3.8s ease-in-out infinite;
+}
+
+body.has-hell-mark[data-theme="hell"] .blood-leaks i:nth-child(1) {
+  --leak-height: 38%;
+  animation-delay: -0.6s;
+}
+
+body.has-hell-mark[data-theme="hell"] .blood-leaks i:nth-child(2) {
+  --leak-height: 76%;
+  animation-delay: -1.5s;
+}
+
+body.has-hell-mark[data-theme="hell"] .blood-leaks i:nth-child(3) {
+  --leak-height: 56%;
+  animation-delay: -0.2s;
+}
+
+body.has-hell-mark[data-theme="hell"] .blood-leaks i:nth-child(4) {
+  --leak-height: 30%;
+  animation-delay: -2.2s;
 }
 
 .butterfly-field {
@@ -1130,47 +1299,135 @@ body[data-theme="hell"] .contact-panel {
   }
 }
 
-@keyframes handprintStrike {
+@keyframes impactFlash {
   0% {
     opacity: 0;
-    transform: translate3d(130px, -95px, 0) rotate(-24deg) scale(1.52);
+    transform: translate(-50%, -50%) scale(0.18);
   }
 
-  22% {
-    opacity: 0.98;
-    transform: translate3d(0, 0, 0) rotate(-8deg) scale(1.02);
-  }
-
-  34% {
+  24% {
     opacity: 1;
-    transform: translate3d(0, 0, 0) rotate(-8deg) scale(1);
+    transform: translate(-50%, -50%) scale(0.92);
   }
 
-  52% {
-    opacity: 0.88;
-    transform: translate3d(0, 0, 0) rotate(-8deg) scale(1);
-  }
-
-  72% {
-    opacity: 0.54;
-    transform: translate3d(-8px, 12px, 0) rotate(-10deg) scale(0.98);
+  55% {
+    opacity: 0.42;
+    transform: translate(-50%, -50%) scale(1.2);
   }
 
   100% {
     opacity: 0;
-    transform: translate3d(-24px, 28px, 0) rotate(-12deg) scale(0.95);
+    transform: translate(-50%, -50%) scale(1.52);
+  }
+}
+
+@keyframes crackSpread {
+  0%,
+  18% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.42);
+  }
+
+  28% {
+    opacity: 0.95;
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+
+  46%,
+  100% {
+    opacity: 0.68;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes screenJolt {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: none;
+  }
+
+  18% {
+    transform: translate3d(-10px, 4px, 0) scale(1.012);
+    filter: contrast(1.12) brightness(1.06);
+  }
+
+  34% {
+    transform: translate3d(7px, -3px, 0) scale(1.006);
+  }
+
+  52% {
+    transform: translate3d(-4px, 2px, 0) scale(1.004);
+  }
+}
+
+@keyframes handStrike {
+  0% {
+    opacity: 0;
+    transform: translate3d(155px, -150px, 0) rotate(-30deg) scale(1.75);
+  }
+
+  18% {
+    opacity: 1;
+    transform: translate3d(-50%, -50%, 0) rotate(-8deg) scale(1.08);
+  }
+
+  26% {
+    opacity: 1;
+    transform: translate3d(-50%, -50%, 0) rotate(-8deg) scale(0.98);
+  }
+
+  44% {
+    opacity: 0.64;
+    transform: translate3d(-54%, -45%, 0) rotate(-12deg) scale(0.98);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(-78%, -28%, 0) rotate(-22deg) scale(0.9);
+  }
+}
+
+@keyframes printSettle {
+  0%,
+  18% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-8deg) scale(0.94);
+  }
+
+  26% {
+    opacity: 0.98;
+    transform: translate(-50%, -50%) rotate(-8deg) scale(1.02);
+  }
+
+  44%,
+  100% {
+    opacity: 0.94;
+    transform: translate(-50%, -50%) rotate(-8deg) scale(0.96);
+  }
+}
+
+@keyframes bloodLeakPulse {
+  0%,
+  100% {
+    transform: translateY(0) scaleY(1);
+    filter: brightness(0.92);
+  }
+
+  45% {
+    transform: translateY(4px) scaleY(1.08);
+    filter: brightness(1.12);
   }
 }
 
 @keyframes handprintReduced {
-  0%,
-  100% {
+  0% {
     opacity: 0;
   }
 
   35%,
-  70% {
-    opacity: 0.8;
+  100% {
+    opacity: 0.9;
   }
 }
 
@@ -1423,10 +1680,10 @@ body[data-theme="hell"] .contact-panel {
     background-size: 52px 52px;
   }
 
-  .hero-handprint {
-    right: -28px;
-    top: 150px;
-    width: 130px;
+  .hero-horror-layer {
+    --impact-x: 87%;
+    --impact-y: 206px;
+    --impact-size: 128px;
   }
 
   .hero-stats,
@@ -1485,6 +1742,12 @@ body[data-theme="hell"] .contact-panel {
     font-size: clamp(2.1rem, 10.2vw, 2.68rem);
   }
 
+  .hero-horror-layer {
+    --impact-x: 92%;
+    --impact-y: 187px;
+    --impact-size: 118px;
+  }
+
   .hero-actions,
   .btn {
     width: 100%;
@@ -1519,7 +1782,23 @@ body[data-theme="hell"] .contact-panel {
     transition-duration: 1ms !important;
   }
 
+  body.is-hell-intro .hero-hand-strike,
+  body.is-hell-intro .screen-impact-flash {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+
   body.is-hell-intro .hero-handprint {
     animation: handprintReduced 1.2s ease both !important;
+  }
+
+  body.is-hell-intro .screen-cracks,
+  body.has-hell-mark[data-theme="hell"] .screen-cracks {
+    opacity: 0.62 !important;
+    transform: translate(-50%, -50%) scale(1) !important;
+  }
+
+  body.has-hell-mark[data-theme="hell"] .blood-leaks i {
+    animation: none !important;
   }
 }

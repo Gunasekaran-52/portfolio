@@ -41,14 +41,19 @@ const playHellIntro = () => {
 
   hasPlayedHellIntro = true;
   document.body.classList.remove("is-hell-intro");
+  document.body.classList.remove("has-hell-mark");
 
   requestAnimationFrame(() => {
     document.body.classList.add("is-hell-intro");
   });
 
   window.setTimeout(() => {
+    document.body.classList.add("has-hell-mark");
+  }, 760);
+
+  window.setTimeout(() => {
     document.body.classList.remove("is-hell-intro");
-  }, 3400);
+  }, 4200);
 };
 
 themeToggle.addEventListener("click", () => {
