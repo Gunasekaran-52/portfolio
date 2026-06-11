@@ -49,11 +49,11 @@ const playHellIntro = () => {
 
   window.setTimeout(() => {
     document.body.classList.add("has-hell-mark");
-  }, 760);
+  }, 560);
 
   window.setTimeout(() => {
     document.body.classList.remove("is-hell-intro");
-  }, 4200);
+  }, 7200);
 };
 
 themeToggle.addEventListener("click", () => {

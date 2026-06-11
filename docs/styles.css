@@ -446,21 +446,43 @@ body[data-theme="hell"] .hero-horror-layer {
 .screen-cracks {
   left: var(--impact-x);
   top: var(--impact-y);
-  width: calc(var(--impact-size) * 2.28);
-  height: calc(var(--impact-size) * 1.9);
+  width: calc(var(--impact-size) * 2.48);
+  height: calc(var(--impact-size) * 2.05);
   opacity: 0;
   transform: translate(-50%, -50%) scale(0.72);
   filter:
-    drop-shadow(0 0 7px rgba(255, 245, 238, 0.48))
-    drop-shadow(0 0 18px rgba(255, 32, 24, 0.34));
+    drop-shadow(0 0 8px rgba(255, 245, 238, 0.6))
+    drop-shadow(0 0 18px rgba(255, 32, 24, 0.4));
   background:
-    radial-gradient(circle at 50% 50%, transparent 0 12%, rgba(255, 245, 238, 0.52) 13%, transparent 15% 100%),
-    linear-gradient(94deg, transparent 0 48.7%, rgba(255, 245, 238, 0.95) 49.4% 50.6%, transparent 51.3% 100%) 50% 50% / 82% 3px no-repeat,
-    linear-gradient(34deg, transparent 0 48.8%, rgba(255, 245, 238, 0.82) 49.5% 50.5%, transparent 51.2% 100%) 52% 39% / 86% 3px no-repeat,
-    linear-gradient(132deg, transparent 0 48.8%, rgba(255, 245, 238, 0.72) 49.5% 50.5%, transparent 51.2% 100%) 45% 52% / 70% 3px no-repeat,
-    linear-gradient(72deg, transparent 0 48.8%, rgba(255, 245, 238, 0.78) 49.5% 50.5%, transparent 51.2% 100%) 56% 58% / 62% 3px no-repeat,
-    linear-gradient(154deg, transparent 0 48.8%, rgba(255, 245, 238, 0.64) 49.5% 50.5%, transparent 51.2% 100%) 66% 44% / 48% 3px no-repeat,
-    linear-gradient(18deg, transparent 0 48.8%, rgba(255, 245, 238, 0.58) 49.5% 50.5%, transparent 51.2% 100%) 34% 63% / 42% 3px no-repeat;
+    radial-gradient(circle at 50% 50%, transparent 0 10%, rgba(255, 245, 238, 0.68) 11%, transparent 13% 100%),
+    linear-gradient(94deg, transparent 0 48.7%, rgba(255, 245, 238, 0.98) 49.3% 50.7%, transparent 51.3% 100%) 50% 50% / 96% 3px no-repeat,
+    linear-gradient(34deg, transparent 0 48.8%, rgba(255, 245, 238, 0.92) 49.4% 50.6%, transparent 51.2% 100%) 52% 39% / 94% 3px no-repeat,
+    linear-gradient(132deg, transparent 0 48.8%, rgba(255, 245, 238, 0.82) 49.4% 50.6%, transparent 51.2% 100%) 45% 52% / 82% 3px no-repeat,
+    linear-gradient(72deg, transparent 0 48.8%, rgba(255, 245, 238, 0.86) 49.4% 50.6%, transparent 51.2% 100%) 56% 58% / 72% 3px no-repeat,
+    linear-gradient(154deg, transparent 0 48.8%, rgba(255, 245, 238, 0.72) 49.4% 50.6%, transparent 51.2% 100%) 66% 44% / 58% 3px no-repeat,
+    linear-gradient(18deg, transparent 0 48.8%, rgba(255, 245, 238, 0.68) 49.4% 50.6%, transparent 51.2% 100%) 34% 63% / 54% 3px no-repeat,
+    linear-gradient(116deg, transparent 0 48.8%, rgba(255, 245, 238, 0.58) 49.4% 50.6%, transparent 51.2% 100%) 39% 35% / 44% 2px no-repeat,
+    linear-gradient(48deg, transparent 0 48.8%, rgba(255, 245, 238, 0.55) 49.4% 50.6%, transparent 51.2% 100%) 67% 63% / 44% 2px no-repeat;
+}
+
+.screen-cracks::before,
+.screen-cracks::after {
+  content: "";
+  position: absolute;
+  inset: 14%;
+  opacity: 0.65;
+  clip-path: polygon(50% 50%, 64% 36%, 82% 42%, 67% 54%, 80% 71%, 56% 62%, 43% 83%, 40% 59%, 18% 64%, 36% 48%, 24% 27%, 47% 39%);
+  background:
+    linear-gradient(135deg, rgba(255, 245, 238, 0.18), transparent 34%),
+    linear-gradient(315deg, rgba(255, 245, 238, 0.12), transparent 48%);
+  border: 1px solid rgba(255, 245, 238, 0.32);
+  transform: rotate(-8deg);
+}
+
+.screen-cracks::after {
+  inset: 25% 20% 18% 28%;
+  opacity: 0.48;
+  transform: rotate(18deg) scale(0.78);
 }
 
 .hero-hand-strike,
@@ -559,11 +581,11 @@ body.is-hell-intro .hero-media img {
 }
 
 body.is-hell-intro .screen-cracks {
-  animation: crackSpread 3.9s ease-out both;
+  animation: crackSpread 7.2s ease-out both;
 }
 
 body.is-hell-intro .hero-hand-strike {
-  animation: handStrike 1.35s cubic-bezier(0.13, 0.88, 0.18, 1) both;
+  animation: handStrike 7.2s cubic-bezier(0.13, 0.88, 0.18, 1) both;
 }
 
 body.has-hell-mark[data-theme="hell"] .hero-handprint {
@@ -571,7 +593,7 @@ body.has-hell-mark[data-theme="hell"] .hero-handprint {
 }
 
 body.is-hell-intro .hero-handprint {
-  animation: printSettle 3.9s ease-out both;
+  animation: printSettle 7.2s ease-out both;
 }
 
 body.has-hell-mark[data-theme="hell"] .blood-leaks {
@@ -1323,19 +1345,23 @@ body[data-theme="hell"] .contact-panel {
 
 @keyframes crackSpread {
   0%,
-  18% {
+  6% {
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.42);
   }
 
-  28% {
-    opacity: 0.95;
-    transform: translate(-50%, -50%) scale(1.06);
+  9% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.09);
   }
 
-  46%,
+  17% {
+    opacity: 0.92;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
   100% {
-    opacity: 0.68;
+    opacity: 0.86;
     transform: translate(-50%, -50%) scale(1);
   }
 }
@@ -1364,43 +1390,48 @@ body[data-theme="hell"] .contact-panel {
 @keyframes handStrike {
   0% {
     opacity: 0;
-    transform: translate3d(155px, -150px, 0) rotate(-30deg) scale(1.75);
+    transform: translate3d(165px, -155px, 0) rotate(-30deg) scale(1.78);
   }
 
-  18% {
+  7% {
     opacity: 1;
-    transform: translate3d(-50%, -50%, 0) rotate(-8deg) scale(1.08);
+    transform: translate3d(-50%, -50%, 0) rotate(-8deg) scale(1.1);
   }
 
-  26% {
+  10% {
     opacity: 1;
     transform: translate3d(-50%, -50%, 0) rotate(-8deg) scale(0.98);
   }
 
-  44% {
-    opacity: 0.64;
-    transform: translate3d(-54%, -45%, 0) rotate(-12deg) scale(0.98);
+  72% {
+    opacity: 1;
+    transform: translate3d(-50%, -50%, 0) rotate(-8deg) scale(0.98);
+  }
+
+  84% {
+    opacity: 0.74;
+    transform: translate3d(-60%, -38%, 0) rotate(-15deg) scale(0.94);
   }
 
   100% {
     opacity: 0;
-    transform: translate3d(-78%, -28%, 0) rotate(-22deg) scale(0.9);
+    transform: translate3d(-98%, -18%, 0) rotate(-28deg) scale(0.82);
   }
 }
 
 @keyframes printSettle {
   0%,
-  18% {
+  6% {
     opacity: 0;
-    transform: translate(-50%, -50%) rotate(-8deg) scale(0.94);
+    transform: translate(-50%, -50%) rotate(-8deg) scale(0.92);
   }
 
-  26% {
+  9% {
     opacity: 0.98;
-    transform: translate(-50%, -50%) rotate(-8deg) scale(1.02);
+    transform: translate(-50%, -50%) rotate(-8deg) scale(1.04);
   }
 
-  44%,
+  15%,
   100% {
     opacity: 0.94;
     transform: translate(-50%, -50%) rotate(-8deg) scale(0.96);
